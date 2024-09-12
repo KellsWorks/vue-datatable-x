@@ -27,7 +27,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="relative">
                 <tr v-for="(item, index) in paginatedItems" :key="index" :class="[
                     props.striped?.show && props.striped?.position === 'show-first' ? (index % 2 !== 0 ? 'bg-gray-100' : '') : '',
                     props.striped?.show && props.striped?.position === 'skip-first' ? (index % 2 !== 0 ? 'bg-gray-100' : '') : '',
@@ -40,6 +40,17 @@
                         {{ item[header.value] }}
                     </td>
                 </tr>
+                <div class="absolute"
+                :class="props.loaderStyle?.position === 'center' ? 'top-0 mx-auto flex justify-center items-center w-full h-full' : ''"
+                >
+                    <component
+                        v-if="loader == '' "
+                        :class="[props.loaderStyle?.color ? `text-[${props.loaderStyle.color}]` : ''
+                        ]"
+                        :style="`height: ${props?.loaderStyle.height}px; width: ${props?.loaderStyle.width}px;`"
+                        :is="displayLoader"
+                    />
+                </div>
             </tbody>
             <tfoot>
                 <tr>
@@ -90,8 +101,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, defineEmits, defineExpose, computed, PropType, watch } from 'vue'
-import type { Header, Striped, TableItem, TableStyle } from '../types';
+import { ref, defineProps, defineEmits, defineExpose, computed, PropType, watch, Prop } from 'vue'
+import type { Header, Loader, LoaderStyle, Striped, TableItem, TableStyle } from '../types';
+import Dots from './Loaders/Dots.vue';
+import Bubble from './Loaders/Bubble.vue';
+import AltLoop from './Loaders/AltLoop.vue';
+import MdLoop from './Loaders/MdLoop.vue';
+import TwotoneLoop from './Loaders/TwotoneLoop.vue';
 
 const props = defineProps({
     headers: {
@@ -105,6 +121,22 @@ const props = defineProps({
     color: {
         type: String,
         required: false,
+    },
+    loading: {
+        type: Boolean,
+        required: false
+    },
+    loader: {
+        type: String as PropType<Loader>,
+        required: false
+    },
+    loaderStyle: {
+        type: Object as PropType<LoaderStyle>,
+        required: false,
+        default: {
+            height: 50,
+            width: 50
+        }
     },
     showHorizontalScrollbar: {
         type: Boolean,
@@ -206,6 +238,21 @@ const borderRadius = computed((): string => {
         "6": "3xl",
     };
     return radiusInterfacer[props.style?.borderRadius || "full"];
+});
+
+const displayLoader = computed((): any => {
+    const loadersInterfacer: Record<Loader, any> = {
+        "dots" : Dots,
+        "bubbles" : Bubble,
+        "alt-loop" : AltLoop,
+        "md-loop" : MdLoop,
+        "twotone-loop" : TwotoneLoop
+    }
+    return loadersInterfacer[props?.loader || "md-loop"]
+});
+
+const isDefaultLoader = computed(() => {
+    return !props.loader || props.loader === '';
 });
 
 watch(itemsPerPage, (i: number) => {

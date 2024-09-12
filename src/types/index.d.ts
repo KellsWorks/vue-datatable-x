@@ -52,10 +52,20 @@ type Striped = {
     position?: "skip-first" | "show-first"
 }
 
+type Loader = "dots" | "alt-loop" | "twotone-loop" | "md-loop" | "bubbles";
+type LoaderStyle = {
+    color?: string;
+    width?: number;
+    height?: number;
+    position?: "center" | "left" | "right" | "bottom"
+}
+
 export {
     Striped,
     Header,
     HeaderStyle,
     TableStyle,
-    TableItem
+    TableItem,
+    Loader,
+    LoaderStyle
 }
