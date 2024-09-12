@@ -27,8 +27,35 @@ type TableStyle = {
     borderRadius?: number;
 }
 
+interface ItemStyle {
+    backgroundColor?: string;
+    textColor?: string;
+    fontSize?: number;
+    fontWeight?: number;
+    fontFamily?: string;
+    textAlign?: 'left' | 'center' | 'right';
+    padding?: number;
+    margin?: number;
+}
+
+type Value = string | number | boolean | Date;
+
+type TableItem = {
+    [key: string]: Value;
+    isClickable?: boolean;
+    onClick?: () => void;
+    style?: ItemStyle;
+}
+
+type Striped = {
+    show?: boolean;
+    position?: "skip-first" | "show-first"
+}
+
 export {
+    Striped,
     Header,
     HeaderStyle,
-    TableStyle
+    TableStyle,
+    TableItem
 }
