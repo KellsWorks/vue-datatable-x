@@ -59,6 +59,9 @@ const data: TableItem[] = [
   }
 ];
 const search = ref('');
+const getClickedCell = (e: any) => {
+  console.log(e)
+}
 </script>
 
 <template>
@@ -66,6 +69,6 @@ const search = ref('');
     <div class="mt-10 mb-5">
       <input type="text" v-model="search" class="border border-black px-2 py-2 rounded"/>
     </div>
-    <Datatable :search="search" search-value="occupation" :loader-style="{ position: 'center', height: 50, width: 50 }" :total-items="4" :items-per-page="1" :style="{ borderRadius: 2}" color="green" :headers="headers" :items="data" :striped="{ show: true, position: 'skip-first' }" />
+    <Datatable @cell-click="getClickedCell" :search="search" search-value="occupation" :loader-style="{ position: 'center', height: 50, width: 50 }" :total-items="4" :items-per-page="1" :style="{ borderRadius: 2}" color="green" :headers="headers" :items="data" :striped="{ show: true, position: 'skip-first' }" />
   </div>
 </template>

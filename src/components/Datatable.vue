@@ -50,16 +50,22 @@
                         header.style?.cellStyle?.borderTopWidth ? `border-t-${header.style?.cellStyle.borderTopWidth || 1};` : '',
                         header.style?.cellStyle?.borderLeftWidth ? `border-l-${header.style?.cellStyle.borderLeftWidth || 1};` : '',
                         header.style?.cellStyle?.borderColor ? `border-color-[${header.style?.cellStyle.borderColor}]` : '',
-                    ]" class="border-b p-2">
+                    ]" class="border-b p-2 hover:cursor-pointer" @click="emit('cell-click', {
+                        item: item,
+                        data: item[header.value],
+                        index: index,
+                        event: $event,
+                    })">
+                        <slot :name="header.value" :item="item"></slot>
                         {{ item[header.value] }}
                     </td>
                 </tr>
-                <div class="absolute"
+                <div v-if="loading" class="absolute z-10"
                     :class="props.loaderStyle?.position === 'center' ? 'top-0 mx-auto flex justify-center items-center w-full h-full' : ''">
                     <component v-if="!isDefaultLoader" :class="[props.loaderStyle?.color ? `text-[${props.loaderStyle.color}]` : ''
                     ]" :style="`height: ${props?.loaderStyle.height}px; width: ${props?.loaderStyle.width}px;`"
                         :is="displayLoader" />
-                    <slot name="loader"></slot>
+                    <slot v-else name="loader"></slot>
                 </div>
             </tbody>
             <tfoot>
@@ -187,7 +193,7 @@ const props = defineProps({
     }
 });
 
-const emit = defineEmits(['update:page', 'update:itemsPerPage']);
+const emit = defineEmits(['update:page', 'update:itemsPerPage', 'cell-click']);
 
 const itemsPerPage = ref(props.itemsPerPage || 10);
 const totalItems = ref(props.totalItems || 0)
@@ -203,10 +209,10 @@ const filteredItems = computed(() => {
 });
 
 const paginatedItems = computed((): TableItem[] => {
-  const sorted = sortColumn(filteredItems.value, sortState.value.column, sortState.value.direction);
-  const start = (currentPage.value - 1) * itemsPerPage.value;
-  const end = start + itemsPerPage.value;
-  return sorted.slice(start, end);
+    const sorted = sortColumn(filteredItems.value, sortState.value.column, sortState.value.direction);
+    const start = (currentPage.value - 1) * itemsPerPage.value;
+    const end = start + itemsPerPage.value;
+    return sorted.slice(start, end);
 });
 
 const totalPages = computed((): number => Math.ceil(totalItems.value / itemsPerPage.value));
