@@ -61,6 +61,6 @@ const data: TableItem[] = [
 
 <template>
   <div>
-    <Datatable :headers="headers" :items="data" :striped="{ show: true, position: 'skip-first'}"/>
+    <Datatable :total-items="4" :items-per-page="1" :style="{ borderRadius: 2}" color="green" :headers="headers" :items="data" :striped="{ show: true, position: 'skip-first' }" />
   </div>
 </template>
