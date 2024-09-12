@@ -24,7 +24,7 @@ npm install vue3-datatable-x
 
 ```vue
 <template>
-  <Table
+  <Vue3DataTableX
     :headers="headers"
     :items="items"
     :color="'#4CAF50'"
@@ -52,12 +52,12 @@ npm install vue3-datatable-x
     <template #loader>
       <MyCustomLoader />
     </template>
-  </Table>
+  </Vue3DataTableX>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import Table from './Table.vue';
+import { Vue3DatatableX } from 'vue3-datatable-x';
 
 const headers = [
   { text: 'Name', value: 'name', position: 'left', style: { bold: true } },
