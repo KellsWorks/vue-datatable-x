@@ -4,6 +4,8 @@ interface HeaderStyle {
     italic?: boolean;
     underline?: boolean;
     color?: string;
+    padding?: number;
+    cellStyle?: ItemStyle;
 }
 
 type HeaderPosition = 'left' | 'right' | 'center';
@@ -36,6 +38,11 @@ interface ItemStyle {
     textAlign?: 'left' | 'center' | 'right';
     padding?: number;
     margin?: number;
+    borderRightWidth?: number;
+    borderBottomWidth?: number;
+    borderLeftWidth?: number;
+    borderTopWidth?: number;
+    borderColor?: string;
 }
 
 type Value = string | number | boolean | Date;
