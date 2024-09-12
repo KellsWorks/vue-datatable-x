@@ -1,9 +1,13 @@
 {
   "name": "vue3-datatable-x",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
-  "author": {"name": "kelvin chidothi", "url": "https://github.com/kellsworks", "email": "kellsworks@gmail.com"},
+  "author": {
+    "name": "kelvin chidothi",
+    "url": "https://github.com/kellsworks",
+    "email": "kellsworks@gmail.com"
+  },
   "files": [
     "dist"
   ],
@@ -30,7 +34,8 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "vue": "^3.4.37"
+    "vue": "^3.4.37",
+    "vue3-datatable-x": "^0.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",

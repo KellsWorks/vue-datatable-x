@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Datatable from './components/Datatable.vue';
 import { Header, TableItem } from './types';
+import { Vue3DatatableX } from "vue3-datatable-x"
 const headers: Header[] = [
   {
     text: "ID",
@@ -69,6 +69,6 @@ const getClickedCell = (e: any) => {
     <div class="mt-10 mb-5">
       <input type="text" v-model="search" class="border border-black px-2 py-2 rounded"/>
     </div>
-    <Datatable @cell-click="getClickedCell" :search="search" search-value="occupation" :loader-style="{ position: 'center', height: 50, width: 50 }" :total-items="4" :items-per-page="1" :style="{ borderRadius: 2}" color="green" :headers="headers" :items="data" :striped="{ show: true, position: 'skip-first' }" />
+    <Vue3DatatableX @cell-click="getClickedCell" :search="search" search-value="occupation" :loader-style="{ position: 'center', height: 50, width: 50 }" :total-items="4" :items-per-page="1" :style="{ borderRadius: 2}" color="green" :headers="headers" :items="data" :striped="{ show: true, position: 'skip-first' }" />
   </div>
 </template>

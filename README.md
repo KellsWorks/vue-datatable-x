@@ -130,6 +130,25 @@ const handleCellClick = ({ item, data, index, event }) => {
 
 The component uses Tailwind CSS classes for styling. You can customize the appearance by providing a `style` prop or overriding the default classes.
 
+## Contributing
+Here's how you can help:
+
+1. Fork the repository
+2. Create a new branch for your feature or bug fix
+3. Make your changes and commit them with a clear commit message
+4. Push your changes to your fork
+5. Submit a pull request to the main repository
+
+Please ensure that your code follows the existing style and includes appropriate tests.
+## Issues and Bug Reports
+This package is still in progress. If you encounter any issues or want to request a new feature, please open an issue on our GitHub repository. When reporting bugs, please include:
+
+1. A clear description of the issue
+2. Steps to reproduce the problem
+3. Expected behavior
+4. Actual behavior
+5. Any relevant code snippets or error messages
+
 ## License
 
 [MIT License](LICENSE)
