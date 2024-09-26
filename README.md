@@ -1,6 +1,6 @@
 # Vue 3 Datatable X
 
-A highly customizable and feature-rich table component for Vue 3 applications.
+A highly customizable and feature-rich table component for Vue 3 applications
 
 ## Features
 
